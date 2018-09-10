@@ -16,8 +16,11 @@ public class ShopExecution {
     // 状态标记
     private String stateInfo;
 
-    // 店铺数量
+    // 操作的店铺
     private Shop shop;
+
+    // 店铺数量
+    private int count;
 
     // shop 列表（查询店铺列表的时候使用）
     private List<Shop> shopList;
@@ -76,5 +79,13 @@ public class ShopExecution {
 
     public void setShopList(List<Shop> shopList) {
         this.shopList = shopList;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }

@@ -12,6 +12,14 @@ import java.io.File;
  **/
 public interface ShopService {
     /**
+     * 根据 shopCondition 分页返回相应列表数据
+     * @param shopCondition
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
+    /**
      * 查询指定店铺信息
      * @return Shop shop
      */

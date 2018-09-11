@@ -42,6 +42,11 @@ public class ShopAdminController {
         return "shop/shopmanagement";
     }
 
+    @RequestMapping(value = "/productcategorymanagement")
+    public String productCategoryManage() {
+        return "shop/productcategorymanagement";
+    }
+
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
     public ShopExecution upload(@RequestParam("file") CommonsMultipartFile file) {

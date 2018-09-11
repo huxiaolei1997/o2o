@@ -9,7 +9,7 @@ public class ProductCategory {
 	private String productCategoryDesc;
 	private Integer priority;
 	private Date createTime;
-	private Date lastEditTime;
+	//private Date lastEditTime;
 
 	public Long getProductCategoryId() {
 		return productCategoryId;
@@ -59,13 +59,13 @@ public class ProductCategory {
 		this.createTime = createTime;
 	}
 
-	public Date getLastEditTime() {
-		return lastEditTime;
-	}
-
-	public void setLastEditTime(Date lastEditTime) {
-		this.lastEditTime = lastEditTime;
-	}
+//	public Date getLastEditTime() {
+//		return lastEditTime;
+//	}
+//
+//	public void setLastEditTime(Date lastEditTime) {
+//		this.lastEditTime = lastEditTime;
+//	}
 
 	public String toString() {
 		return "[productCategoryId=" + productCategoryId

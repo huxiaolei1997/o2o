@@ -15,8 +15,8 @@ public class Product implements Serializable{
 	private String promotionPrice;
 	private Integer priority;
 	private Date createTime;
-	// -1 不可用 0. 下架 1. 在前端展示系统 展示
 	private Date lastEditTime;
+	// -1 不可用 0. 下架 1. 在前端展示系统 展示
 	private Integer enableStatus;
 	private Integer point;
 

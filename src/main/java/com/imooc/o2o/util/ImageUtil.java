@@ -29,6 +29,23 @@ public class ImageUtil {
                 ImageIO.read(new File("C:\\Users\\Mystery\\Desktop\\2.jpg")), 0.25f).outputQuality(0.8f).toFile("C:\\Users\\Mystery\\Desktop\\1_new.jpg");
 
     }
+    public static String generateNormalImg(CommonsMultipartFile thumbnail, String targetAddr) {
+        // 获取不重复的随机名
+        String realFileName = getRandomFileName();
+        // 获取文件扩展名
+        String extension = getFileExtension(thumbnail);
+        // 如果目标路径不存在，则自动创建
+        makeDirPath(targetAddr);
+        String relativeAddr = targetAddr + realFileName + extension;
+        File dest = new File(PathUtil.getImgBasePath() + relativeAddr);
+        // 调用 Thumbnails 生成图片
+        try {
+            Thumbnails.of(thumbnail.getInputStream()).size(337, 640).outputQuality(0.5f).toFile(dest);
+        } catch (IOException e) {
+            throw new RuntimeException("创建缩略图失败：" + e.toString());
+        }
+        return relativeAddr;
+    }
 
     public static String generateThumbnail(CommonsMultipartFile thumbnail, String targetAddr) {
         String realFileName = getRandomFileName();
@@ -39,7 +56,7 @@ public class ImageUtil {
         try {
             Thumbnails.of(thumbnail.getInputStream()).size(200, 200).outputQuality(0.25f).toFile(dest);
         } catch (IOException e) {
-            throw new RuntimeException("创建缩略图失败：" + e.toString());
+            throw new RuntimeException("创建缩略图失败：" + e.getMessage());
         }
         return relativeAddr;
     }

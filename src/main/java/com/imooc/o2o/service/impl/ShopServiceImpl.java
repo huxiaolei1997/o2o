@@ -67,6 +67,7 @@ public class ShopServiceImpl implements ShopService {
      * @throws RuntimeException
      */
     @Override
+    @Transactional
     public ShopExecution modifyShop(Shop shop, CommonsMultipartFile shopImg) throws RuntimeException {
         if (shop == null || shop.getShopId() == null) {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);

@@ -1,13 +1,12 @@
 package com.imooc.o2o.web.shopadmin;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.imooc.o2o.dto.ShopExecution;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
-import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
@@ -23,7 +22,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -67,7 +69,7 @@ public class ShopManagementController {
             request.getSession().setAttribute("currentShop", currentShop);
             modelMap.put("redirect", false);
         }
-        return  modelMap;
+        return modelMap;
     }
 
     @RequestMapping(value = "/getshoplist", method = RequestMethod.GET)
@@ -147,10 +149,11 @@ public class ShopManagementController {
             return modelMap;
         }
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
         Shop shop;
         try {
-            shop = mapper.readValue(shopStr, Shop.class);
+            //shop = mapper.readValue(shopStr, Shop.class);
+            shop = JSON.parseObject(shopStr, Shop.class);
         } catch (Exception e) {
             modelMap.put("success", false);
             modelMap.put("errMsg", e.getMessage());
@@ -173,7 +176,7 @@ public class ShopManagementController {
             shop.setOwner(owner);
             ShopExecution shopExecution;
             try {
-                 shopExecution = shopService.addShop(shop, shopImg);
+                shopExecution = shopService.addShop(shop, shopImg);
                 if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
                     modelMap.put("success", true);
                     // 该用户可以操作的店铺列表
@@ -209,10 +212,11 @@ public class ShopManagementController {
             return modelMap;
         }
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
         Shop shop;
         try {
-            shop = mapper.readValue(shopStr, Shop.class);
+            //shop = mapper.readValue(shopStr, Shop.class);
+            shop = JSON.parseObject(shopStr, Shop.class);
         } catch (Exception e) {
             modelMap.put("success", false);
             modelMap.put("errMsg", e.getMessage());

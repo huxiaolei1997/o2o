@@ -19,7 +19,7 @@ public class ShopExecution {
     // 操作的店铺
     private Shop shop;
 
-    // 店铺数量
+    // 某个分类下的店铺数量
     private int count;
 
     // shop 列表（查询店铺列表的时候使用）

@@ -5,27 +5,27 @@
 <mapper namespace="com.imooc.o2o.dao.ShopDao">
 
     <resultMap type="com.imooc.o2o.entity.Shop" id="shopMap">
-        <id column="shop_id" property="shopId" />
-        <result column="shop_name" property="shopName" />
-        <result column="shop_desc" property="shopDesc" />
-        <result column="shop_addr" property="shopAddr" />
-        <result column="phone" property="phone" />
-        <result column="shop_img" property="shopImg" />
-        <result column="priority" property="priority" />
-        <result column="create_time" property="createTime" />
-        <result column="last_edit_time" property="lastEditTime" />
-        <result column="enable_status" property="enableStatus" />
-        <result column="advice" property="advice" />
+        <id column="shop_id" property="shopId"/>
+        <result column="shop_name" property="shopName"/>
+        <result column="shop_desc" property="shopDesc"/>
+        <result column="shop_addr" property="shopAddr"/>
+        <result column="phone" property="phone"/>
+        <result column="shop_img" property="shopImg"/>
+        <result column="priority" property="priority"/>
+        <result column="create_time" property="createTime"/>
+        <result column="last_edit_time" property="lastEditTime"/>
+        <result column="enable_status" property="enableStatus"/>
+        <result column="advice" property="advice"/>
         <association property="area" column="area_id" javaType="com.imooc.o2o.entity.Area">
-            <id column="area_id" property="areaId" />
+            <id column="area_id" property="areaId"/>
             <result column="area_name" property="areaName"/>
         </association>
         <association property="shopCategory" column="shop_category_id" javaType="com.imooc.o2o.entity.ShopCategory">
-            <id column="shop_category_id" property="shopCategoryId" />
+            <id column="shop_category_id" property="shopCategoryId"/>
             <result column="shop_category_name" property="shopCategoryName"/>
         </association>
         <association property="owner" column="user_id" javaType="com.imooc.o2o.entity.PersonInfo">
-            <id column="user_id" property="userId" />
+            <id column="user_id" property="userId"/>
             <result column="name" property="name"/>
         </association>
     </resultMap>
@@ -54,7 +54,13 @@
         <where>
             <if test="shopCondition.shopCategory != null and
            shopCondition.shopCategory.shopCategoryId != null">
-              and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+                and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+            </if>
+            <if test="shopCondition.shopCategory != null and
+              shopCondition.shopCategory.parent != null
+          and shopCondition.shopCategory.parent.shopCategoryId != null ">
+                and s.shop_category_id in (select shop_category_id from tb_shop_category
+                WHERE parent_id = #{shopCondition.shopCategory.parent.shopCategoryId})
             </if>
             <if test="shopCondition.area != null and
            shopCondition.area.areaId != null">
@@ -91,6 +97,12 @@
             <if test="shopCondition.shopCategory != null and
            shopCondition.shopCategory.shopCategoryId != null">
                 and s.shop_category_id = #{shopCondition.shopCategory.shopCategoryId}
+            </if>
+            <if test="shopCondition.shopCategory != null and
+              shopCondition.shopCategory.parent != null
+          and shopCondition.shopCategory.parent.shopCategoryId != null ">
+                and s.shop_category_id in (select shop_category_id from tb_shop_category
+                WHERE parent_id = #{shopCondition.shopCategory.parent.shopCategoryId})
             </if>
             <if test="shopCondition.area != null and
            shopCondition.area.areaId != null">

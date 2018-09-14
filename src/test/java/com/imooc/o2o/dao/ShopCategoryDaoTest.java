@@ -19,7 +19,8 @@ public class ShopCategoryDaoTest extends BaseTest {
 
     @Test
     public void queryShopCategory() {
-        List<ShopCategory> shopCategoryList = shopCategoryDao.queryShopCategory(new ShopCategory());
+        // 查询参数为 null ,查找出所有的父类商铺类别
+        List<ShopCategory> shopCategoryList = shopCategoryDao.queryShopCategory(null);
         System.out.println("shopCategoryList" + shopCategoryList.toString());
         //assertEquals(2, shopCategoryList.size());
         //ShopCategory testCategory = new ShopCategory();

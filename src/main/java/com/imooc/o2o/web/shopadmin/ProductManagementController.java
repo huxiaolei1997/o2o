@@ -1,6 +1,6 @@
 package com.imooc.o2o.web.shopadmin;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson.JSON;
 import com.imooc.o2o.dto.ImageHolder;
 import com.imooc.o2o.dto.ProductExecution;
 import com.imooc.o2o.entity.Product;
@@ -119,7 +119,7 @@ public class ProductManagementController {
             modelMap.put("errMsg", "输入了错误的验证码");
             return modelMap;
         }
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
         Product product;
         ImageHolder thumbnail = null;
         List<ImageHolder> productImgList = new ArrayList<>();
@@ -137,7 +137,7 @@ public class ProductManagementController {
         try {
             String productStr = HttpServletRequestUtil.getString(request,
                     "productStr");
-            product = mapper.readValue(productStr, Product.class);
+            product = JSON.parseObject(productStr, Product.class);
         } catch (Exception e) {
             modelMap.put("success", false);
             modelMap.put("errMsg", e.toString());
@@ -189,7 +189,7 @@ public class ProductManagementController {
             return modelMap;
         }
         // 初始化接收前端参数的变量，包括商品，缩略图，详情图列表实体类
-        ObjectMapper mapper = new ObjectMapper();
+        //ObjectMapper mapper = new ObjectMapper();
         Product product;
         ImageHolder thumbnail = null;
         List<ImageHolder> productImgList = new ArrayList<>();
@@ -208,7 +208,7 @@ public class ProductManagementController {
         try {
             String productStr = HttpServletRequestUtil.getString(request,
                     "productStr");
-            product = mapper.readValue(productStr, Product.class);
+            product = JSON.parseObject(productStr, Product.class);
         } catch (Exception e) {
             modelMap.put("success", false);
             modelMap.put("errMsg", e.toString());

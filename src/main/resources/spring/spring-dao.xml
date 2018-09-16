@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context.xsd">
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- 配置整合mybatis过程 -->
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
     <!--<bean class="com.imooc.myo2o.util.EncryptPropertyPlaceholderConfigurer">-->
@@ -27,8 +24,14 @@
         <property name="fileEncoding" value="UTF-8" />
     </bean>
     <!-- 2.数据库连接池 -->
-    <bean id="abstractDataSource" abstract="true" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
           destroy-method="close">
+        <!-- 配置连接池属性 -->
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.master.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
         <!-- c3p0连接池的私有属性 -->
         <property name="maxPoolSize" value="30"/>
         <property name="minPoolSize" value="10"/>
@@ -40,38 +43,34 @@
         <property name="acquireRetryAttempts" value="2"/>
     </bean>
 
-    <!-- 主库配置 -->
-    <bean id="master" parent="abstractDataSource">
-        <!-- 配置连接池属性 -->
-        <property name="driverClass" value="${jdbc.driver}"/>
-        <property name="jdbcUrl" value="${jdbc.master.url}"/>
-        <property name="user" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
+    <!--&lt;!&ndash; 主库配置 &ndash;&gt;-->
+    <!--<bean id="master" parent="abstractDataSource">-->
+       <!---->
+    <!--</bean>-->
 
-    <!-- 从库配置 -->
-    <bean id="slave" parent="abstractDataSource">
-        <!-- 配置连接池属性 -->
-        <property name="driverClass" value="${jdbc.driver}"/>
-        <property name="jdbcUrl" value="${jdbc.slave.url}"/>
-        <property name="user" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
+    <!--&lt;!&ndash; 从库配置 &ndash;&gt;-->
+    <!--<bean id="slave" parent="abstractDataSource">-->
+        <!--&lt;!&ndash; 配置连接池属性 &ndash;&gt;-->
+        <!--<property name="driverClass" value="${jdbc.driver}"/>-->
+        <!--<property name="jdbcUrl" value="${jdbc.slave.url}"/>-->
+        <!--<property name="user" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+    <!--</bean>-->
 
     <!-- 配置动态数据源，这儿targetDataSources 就是路由数据源所对应的名称-->
-    <bean id="dynamicDataSource" class="com.imooc.o2o.dao.split.DynamicDataSource">
-        <property name="targetDataSources">
-            <map>
-                <entry value-ref="master" key="master"></entry>
-                <entry value-ref="slave" key="slave"></entry>
-            </map>
-        </property>
-    </bean>
+    <!--<bean id="dynamicDataSource" class="com.imooc.o2o.dao.split.DynamicDataSource">-->
+        <!--<property name="targetDataSources">-->
+            <!--<map>-->
+                <!--<entry value-ref="master" key="master"></entry>-->
+                <!--<entry value-ref="slave" key="slave"></entry>-->
+            <!--</map>-->
+        <!--</property>-->
+    <!--</bean>-->
 
     <!-- 因为是mybatis SQL 语句生成的时候才决定使用哪个 dataSource，所以引入懒加载-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
-        <property name="targetDataSource" ref="dynamicDataSource"/>
-    </bean>
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">-->
+        <!--<property name="targetDataSource" ref="dynamicDataSource"/>-->
+    <!--</bean>-->
 
     <!-- 3.配置SqlSessionFactory对象 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

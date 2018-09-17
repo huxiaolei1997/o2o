@@ -1,9 +1,11 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ShopAuthMap {
+public class ShopAuthMap implements Serializable {
 
+	private static final long serialVersionUID = 2075087618556836480L;
 	private Long shopAuthId;
 	private Long employeeId;
 	private Long shopId;

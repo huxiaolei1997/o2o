@@ -1,13 +1,8 @@
 package com.imooc.o2o.exceptions;
 
-/**
- * AreaOpeartionException
- *
- * @create 2018-09-17 11:11
- *
- * @copyright huxiaolei1997@gmail.com
- */
 public class AreaOpeartionException extends RuntimeException {
+
+    private static final long serialVersionUID = -4781417388881612652L;
 
     public AreaOpeartionException(String msg) {
         super(msg);

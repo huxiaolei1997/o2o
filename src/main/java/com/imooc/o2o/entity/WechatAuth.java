@@ -1,12 +1,14 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author xiaolei hu
  * @date 2018/9/5 20:06
  **/
-public class WechatAuth {
+public class WechatAuth implements Serializable {
+    private static final long serialVersionUID = -6772032506056288565L;
     // 主键 Id
     private Long wechatAuthId;
     // 微信获取用户信息的凭证，对于某个公众号具有唯一性

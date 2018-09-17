@@ -1,79 +1,81 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ShopCategory {
+public class ShopCategory implements Serializable {
 
-	private Long shopCategoryId;
-	private String shopCategoryName;
-	private String shopCategoryDesc;
-	private String shopCategoryImg;
-	private Integer priority;
-	private Date createTime;
-	private Date lastEditTime;
-	private ShopCategory parent;
+    private static final long serialVersionUID = -7230582644384469563L;
+    private Long shopCategoryId;
+    private String shopCategoryName;
+    private String shopCategoryDesc;
+    private String shopCategoryImg;
+    private Integer priority;
+    private Date createTime;
+    private Date lastEditTime;
+    private ShopCategory parent;
 
-	public Long getShopCategoryId() {
-		return shopCategoryId;
-	}
+    public Long getShopCategoryId() {
+        return shopCategoryId;
+    }
 
-	public void setShopCategoryId(Long shopCategoryId) {
-		this.shopCategoryId = shopCategoryId;
-	}
+    public void setShopCategoryId(Long shopCategoryId) {
+        this.shopCategoryId = shopCategoryId;
+    }
 
-	public String getShopCategoryName() {
-		return shopCategoryName;
-	}
+    public String getShopCategoryName() {
+        return shopCategoryName;
+    }
 
-	public void setShopCategoryName(String shopCategoryName) {
-		this.shopCategoryName = shopCategoryName;
-	}
+    public void setShopCategoryName(String shopCategoryName) {
+        this.shopCategoryName = shopCategoryName;
+    }
 
-	public String getShopCategoryDesc() {
-		return shopCategoryDesc;
-	}
+    public String getShopCategoryDesc() {
+        return shopCategoryDesc;
+    }
 
-	public void setShopCategoryDesc(String shopCategoryDesc) {
-		this.shopCategoryDesc = shopCategoryDesc;
-	}
+    public void setShopCategoryDesc(String shopCategoryDesc) {
+        this.shopCategoryDesc = shopCategoryDesc;
+    }
 
-	public String getShopCategoryImg() {
-		return shopCategoryImg;
-	}
+    public String getShopCategoryImg() {
+        return shopCategoryImg;
+    }
 
-	public void setShopCategoryImg(String shopCategoryImg) {
-		this.shopCategoryImg = shopCategoryImg;
-	}
+    public void setShopCategoryImg(String shopCategoryImg) {
+        this.shopCategoryImg = shopCategoryImg;
+    }
 
-	public Integer getPriority() {
-		return priority;
-	}
+    public Integer getPriority() {
+        return priority;
+    }
 
-	public void setPriority(Integer priority) {
-		this.priority = priority;
-	}
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public Date getLastEditTime() {
-		return lastEditTime;
-	}
+    public Date getLastEditTime() {
+        return lastEditTime;
+    }
 
-	public void setLastEditTime(Date lastEditTime) {
-		this.lastEditTime = lastEditTime;
-	}
+    public void setLastEditTime(Date lastEditTime) {
+        this.lastEditTime = lastEditTime;
+    }
 
-	public ShopCategory getParent() {
-		return parent;
-	}
+    public ShopCategory getParent() {
+        return parent;
+    }
 
-	public void setParent(ShopCategory parent) {
-		this.parent = parent;
-	}
+    public void setParent(ShopCategory parent) {
+        this.parent = parent;
+    }
 }

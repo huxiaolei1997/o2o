@@ -1,13 +1,8 @@
 package com.imooc.o2o.exceptions;
 
-/**
- * ShopCategoryException
- *
- * @create 2018-09-17 11:11
- *
- * @copyright huxiaolei1997@gmail.com
- */
 public class ShopCategoryException extends RuntimeException {
+
+    private static final long serialVersionUID = -2475167593086490803L;
 
     public ShopCategoryException(String msg) {
         super(msg);

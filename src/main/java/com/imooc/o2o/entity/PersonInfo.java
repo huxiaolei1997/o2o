@@ -1,12 +1,14 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author xiaolei hu
  * @date 2018/9/5 19:53
  **/
-public class PersonInfo {
+public class PersonInfo implements Serializable {
+    private static final long serialVersionUID = 1351847647641991812L;
     private Long userId;
     private String name;
     private String profileImg;

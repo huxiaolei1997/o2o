@@ -1,8 +1,10 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProductCategory {
+public class ProductCategory implements Serializable {
+	private static final long serialVersionUID = -5608968232271452252L;
 	private Long productCategoryId;
 	private Long shopId;
 	private String productCategoryName;

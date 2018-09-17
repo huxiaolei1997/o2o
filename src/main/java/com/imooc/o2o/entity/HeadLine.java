@@ -1,12 +1,14 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author xiaolei hu
  * @date 2018/9/6 20:39
  **/
-public class HeadLine {
+public class HeadLine implements Serializable {
+    private static final long serialVersionUID = 1121234778561617058L;
     private Long lineId;
     private String lineName;
     private String lineLink;

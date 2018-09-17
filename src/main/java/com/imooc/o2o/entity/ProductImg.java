@@ -1,8 +1,10 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ProductImg {
+public class ProductImg implements Serializable {
+    private static final long serialVersionUID = 7197698580547472062L;
     private Long productImgId;
     private String imgAddr;
     private String imgDesc;

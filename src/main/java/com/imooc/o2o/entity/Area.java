@@ -1,12 +1,14 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author xiaolei hu
  * @date 2018/9/4 19:53
  **/
-public class Area {
+public class Area implements Serializable {
+    private static final long serialVersionUID = -6551348044761819655L;
     // ID
     private Integer areaId;
     // 名称

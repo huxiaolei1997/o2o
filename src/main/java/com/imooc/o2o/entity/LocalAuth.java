@@ -1,17 +1,25 @@
 package com.imooc.o2o.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author xiaolei hu
  * @date 2018/9/5 20:08
  **/
-public class LocalAuth {
+public class LocalAuth implements Serializable {
+    private static final long serialVersionUID = 3585088970770638662L;
+    // 主键 ID
     private Long localAuthId;
-    private String username;
+    // 账号
+    private String userName;
+    // 密码
     private String password;
+    // 创建时间
     private Date createTime;
+    // 最近一次的更新时间
     private Date lastEditTime;
+    // 个人信息，关系为一一对应关系
     private PersonInfo personInfo;
 
     public Long getLocalAuthId() {
@@ -22,12 +30,12 @@ public class LocalAuth {
         this.localAuthId = localAuthId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

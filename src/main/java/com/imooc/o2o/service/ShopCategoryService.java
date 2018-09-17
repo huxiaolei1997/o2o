@@ -9,8 +9,11 @@ import java.util.List;
  * @date 2018/9/8 17:08
  **/
 public interface ShopCategoryService {
+    public static final String SCLISTKEY = "shopcategorylist";
+
     /**
      * 根据查询条件获取 ShopCategory 列表
+     *
      * @param shopCategoryCondition
      * @return
      */

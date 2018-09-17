@@ -10,6 +10,7 @@ import java.util.List;
  * @date 2018/9/13 19:55
  **/
 public interface HeadLineService {
+    public static final String HILLISTKEY = "headlinelist";
 
     /**
      * 根据传入的条件返回指定的头条列表

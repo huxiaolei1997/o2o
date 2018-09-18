@@ -89,6 +89,7 @@ $(function() {
             processData: false,
             cache: false,
             success: function(data) {
+                var data = JSON.parse(data);
                 if (data.success) {
                     $.toast("提交成功");
                 } else {

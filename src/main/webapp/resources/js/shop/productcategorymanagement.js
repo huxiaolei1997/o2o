@@ -69,6 +69,7 @@ $(function () {
             type: 'POST',
             data: JSON.stringify(productCategoryList),
             contentType: 'application/json',
+            dataType: 'json',
             success: function (data) {
                 if (data.success) {
                     $.toast('提交成功！');

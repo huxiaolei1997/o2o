@@ -7,6 +7,7 @@ import com.imooc.o2o.entity.PersonInfo;
 import com.imooc.o2o.entity.Shop;
 import com.imooc.o2o.entity.ShopCategory;
 import com.imooc.o2o.enums.ShopStateEnum;
+import com.imooc.o2o.exceptions.ShopOperationException;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopCategoryService;
 import com.imooc.o2o.service.ShopService;
@@ -77,15 +78,16 @@ public class ShopManagementController {
     private Map<String, Object> getShopList(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
         PersonInfo user = new PersonInfo();
-        user.setUserId(1L);
-        user.setName("test");
-        request.getSession().setAttribute("user", user);
+//        user.setUserId(1L);
+//        user.setName("test");
+        //request.getSession().setAttribute("user", user);
         user = (PersonInfo) request.getSession().getAttribute("user");
-        user.setUserId(1L);
         try {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
             ShopExecution se = shopService.getShopList(shopCondition, 0, 100);
+            // 列出店铺成功之后，将店铺放入 session 中作为权限验证依据，即该账号只能操作他自己的店铺
+            request.getSession().setAttribute("shopList", se.getShopList());
             modelMap.put("success", true);
             modelMap.put("shopList", se.getShopList());
             modelMap.put("user", user);
@@ -190,7 +192,7 @@ public class ShopManagementController {
                     modelMap.put("success", false);
                     modelMap.put("errMsg", shopExecution.getStateInfo());
                 }
-            } catch (Exception e) {
+            } catch (ShopOperationException e) {
                 modelMap.put("success", false);
                 modelMap.put("errMsg", e.getMessage());
             }

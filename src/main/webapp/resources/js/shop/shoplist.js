@@ -1,5 +1,6 @@
 $(function () {
     getlist();
+
     function getlist(e) {
         $.ajax({
             url: "/o2o/shopadmin/getshoplist",
@@ -50,21 +51,21 @@ $(function () {
     }
 
 
-    $('#log-out').click(function () {
-        $.ajax({
-            url: "/o2o/shop/logout",
-            type: "post",
-            contentType: false,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                if (data.success) {
-                    window.location.href = '/myo2o/shop/ownerlogin';
-                }
-            },
-            error: function (data, error) {
-                alert(error);
-            }
-        });
-    });
+    // $('#log-out').click(function () {
+    //     $.ajax({
+    //         url: "/o2o/shop/logout",
+    //         type: "post",
+    //         contentType: false,
+    //         processData: false,
+    //         cache: false,
+    //         success: function (data) {
+    //             if (data.success) {
+    //                 window.location.href = '/myo2o/shop/ownerlogin';
+    //             }
+    //         },
+    //         error: function (data, error) {
+    //             alert(error);
+    //         }
+    //     });
+    // });
 });
